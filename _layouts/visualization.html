@@ -1,11 +1,14 @@
 ---
 layout: default
-custom-foot: transcript/js/visualization-js.html
+custom-foot: annotated-media/js/visualization-js.html
 ---
-{% include transcript/style/filter-style.html %}
+{% include annotated-media/style/filter-style.html %}
 {% assign transcripts = site.data.transcripts | sort %}
 {% assign items = site.data[site.metadata] %}
-<div class="container p-4 p-md-5">{% unless site.data.theme.as-data == false %}{% include transcript/filters-data-download-modal.html %}{% endunless %}
+<div class="container p-4 p-md-5">
+  {% unless site.data.theme.as-data == false %}
+    {% include annotated-media/filters-data-download-modal.html %}
+  {% endunless %}
   <h2 id="visualize-by-subject">Color-coded Subject Visualization</h2>
 
   <p>Click a colored circle/subject to see corresponding sections. {% unless site.data.theme.transcript-contents == false %}You can also filter by subject and view/print related <a href="#transcript-contents">contents</a> below.{% endunless %}</p>
@@ -50,9 +53,8 @@ custom-foot: transcript/js/visualization-js.html
 <div class="container" id="transcript-contents">
   <h2>Contents</h2>
 
-
   {% for transcript in site.data.transcripts %}
-  {%assign transcript-name = transcript[0] %}
+  {% assign transcript-name = transcript[0] %}
   {% assign transcript_item = items | where_exp: 'item', 'item.objectid == transcript-name' | first %}
   {% for item in transcript[1] %}
   {% if forloop.first %}

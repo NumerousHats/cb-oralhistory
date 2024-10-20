@@ -1,0 +1,83 @@
+---
+# generic fallback item page layout
+# displays image or icon depending on "image_thumb"
+layout: item/item-page-base
+custom-foot: annotated-media/js/transcript-js.html
+---
+<!-- annotated-media item layout -->
+{%- comment -%} Determine if transcript filename is the objectid of the item or if it is determined by the metadata's object-transcript field, or if it even exists at all {%- endcomment -%}
+{% if page.object-transcript contains ".csv"%}
+    {% assign temp = page.object-transcript | remove: ".csv" %}
+    {% assign transcript-items = site.data.transcripts[temp] %}
+{% elsif page.object-transcript %}
+    {% assign transcript-items = site.data.transcripts[page.object-transcript] %}
+{% else %}
+    {% assign transcript-items = site.data.transcripts[page.objectid] %}
+{% endif %}
+
+{%- comment -%} Determine if segment filename is the objectid of the item or if it is determined by the metadata's object-segment field, or if it even exists at all {%- endcomment -%}
+{% if page.object-segments contains ".csv"%}
+    {% assign temp = page.object-segments | remove: ".csv" %}
+    {% assign segment-items = site.data.segments[temp] %}
+{% elsif page.object-segments %}
+    {% assign segment-items = site.data.segments[page.object-segments] %}
+{% else %}
+    {% assign segment-items = site.data.segments[page.objectid] %}
+{% endif %}
+
+{%- comment -%} if using color-coded visualization find all words used in the subject metadata {%- endcomment -%}
+{% if site.data.filters and transcript-items %}
+    {% include annotated-media/style/filter-style.html %}
+    {%- assign min-count = 1 -%}
+    {%- assign raw-subjects = transcript-items | map: "tags" | compact | join: ";" | split: ";" -%}
+    {%- capture subjects -%}{% for s in raw-subjects %}{% if s != "" %}{{- s | strip | downcase -}};{% endif %}{%- endfor
+-%}{%-endcapture -%}
+    {%- assign subjects = subjects | split: ";" -%}
+    {%- assign uniqueSubjects = subjects | uniq | sort -%}
+{% endif %}
+
+{%- comment -%} determine AV component (if there is one) {%- endcomment -%}
+{% if page.object_location contains 'vimeo' %}
+    {% assign av = "vimeo" %}
+    {% assign vimeo_id = page.object_location | split: '/' | last %}
+{%- elsif page.object_location contains 'youtu' -%}
+    {% assign av = "youtube" %}
+    {% assign youtube_id = page.object_location | split: '/' | last %}
+    {% if youtube_id contains 'v=' %}
+        {% assign youtube_id = youtube_id | split: 'v=' | last | split: '&' | first %}
+    {% elsif youtube_id contains '?' %}
+        {% assign youtube_id = youtube_id | split: '?' | first %}
+    {% endif %}
+{%- elsif page.object_location contains 'mp3' -%}
+    {% assign av = "mp3" %}
+{%- elsif page.object_location contains 'soundcloud' -%}
+    {% assign av = "soundcloud" %}
+    {% assign soundcloud_id = page.object_location | split: '.com/' | last %}
+{%endif%}
+
+<div id="upper-content">
+    {% if site.data.theme.media-scroll == true %}
+        {% include annotated-media/style/media-scroll-wrapper.html %}
+    {% endif %}
+    {% if av %}
+        {% include annotated-media/item/av.html %}
+    {% endif %}
+    
+    <div id="transcript-metadata">
+        {% include annotated-media/item/transcript-metadata.html %}
+    </div>    
+</div>
+
+{% if transcript-items and segment-items %}
+    <h1>both</h1>
+{% elsif transcript-items %}
+    {% if site.data.filters %}
+        {% include annotated-media/item/transcript-viz.html %}
+    {% endif %}
+    {% include annotated-media/item/transcript.html %}
+{% elsif segment-items %}
+    <h1>just segments</h1>
+{% else %}
+    <h1>nothing</h1>
+{% endif %}
+
