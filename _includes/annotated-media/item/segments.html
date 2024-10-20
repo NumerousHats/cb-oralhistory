@@ -1,5 +1,5 @@
-<!-- cb: _includes/segments/item/segments.html -->
-{% include transcript/item/filters.html %}
+<!-- cb: _includes/annotated-media/item/segments.html -->
+{% include annotated-media/item/filters.html %}
 <style>
   #filters-search {
     visibility: hidden;
@@ -15,18 +15,13 @@
 <div id="contents" class="pe-5">
   <div id="contents-container" class="pe-5">
       <h3 class="mt-5 mb-5">Contents of this recording:</h3>
-      {% for item in items %}
-        {% assign prev_index = forloop.index0 | times: 1 | minus: 1 %}
-        {% assign prev_speaker = items[prev_index].speaker %}
-        {% assign mod = forloop.index | plus: 1 | modulo: 5 %}
-
-        <!-- <div class="list-group-item segment"> -->
+      {% for item in segment-items %}
         <div class="row my-1 segment">
             <div class="d-flex w-100 justify-content-between index-item">
               <h5 class="mb-3">{{item.title}}</h5>
               <small class="ms-3">
                   {%if item.timestamp%}
-                    {% include transcript/standardized-timestamp.html %}
+                    {% include annotated-media/standardized-timestamp.html %}
                     {% if av %}
                       <a href="#{{total_sec}}" class="timestamp-link" data-timestamp="{{total_sec | strip}}" {% if av contains 'mp3' %}onclick="timestampMP3('{{- total_sec -}}');"{% elsif av contains 'youtube' %}onclick="seekTo({{ total_sec }});"{% elsif av contains 'soundcloud' %}onclick="seekTo({{total_sec | times: 1000}});"{% endif %}>{{timestamp}}</a>
                     {% else %}{{item.timestamp}}{% endif %}

@@ -63,7 +63,7 @@ custom-foot: annotated-media/js/transcript-js.html
         {% include annotated-media/item/av.html %}
     {% endif %}
     
-    <div id="transcript-metadata">
+    <div id="media-metadata">
         {% include annotated-media/item/transcript-metadata.html %}
     </div>    
 </div>
@@ -76,7 +76,7 @@ custom-foot: annotated-media/js/transcript-js.html
     {% endif %}
     {% include annotated-media/item/transcript.html %}
 {% elsif segment-items %}
-    <h1>just segments</h1>
+    {% include annotated-media/item/segments.html %}
 {% else %}
     <h1>nothing</h1>
 {% endif %}
