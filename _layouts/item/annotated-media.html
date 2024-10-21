@@ -48,7 +48,7 @@ custom-foot: annotated-media/js/transcript-js.html
     {% elsif youtube_id contains '?' %}
         {% assign youtube_id = youtube_id | split: '?' | first %}
     {% endif %}
-{%- elsif page.object_location contains 'mp3' -%}
+{%- elsif page.object_location contains 'mp3' or page.object_location contains 'ogg' -%}
     {% assign av = "mp3" %}
 {%- elsif page.object_location contains 'soundcloud' -%}
     {% assign av = "soundcloud" %}
@@ -63,13 +63,15 @@ custom-foot: annotated-media/js/transcript-js.html
         {% include annotated-media/item/av.html %}
     {% endif %}
     
-    <div id="media-metadata">
-        {% include annotated-media/item/transcript-metadata.html %}
-    </div>    
+    {% if transcript-items or segment-items %}
+        <div id="media-metadata">
+            {% include annotated-media/item/transcript-metadata.html %}
+        </div>    
+    {% endif %}
 </div>
 
 {% if transcript-items and segment-items %}
-    <h1>both</h1>
+    <p>This will have tabbed navigation to switch between segments and transcript</p>        
 {% elsif transcript-items %}
     {% if site.data.filters %}
         {% include annotated-media/item/transcript-viz.html %}
@@ -77,7 +79,5 @@ custom-foot: annotated-media/js/transcript-js.html
     {% include annotated-media/item/transcript.html %}
 {% elsif segment-items %}
     {% include annotated-media/item/segments.html %}
-{% else %}
-    <h1>nothing</h1>
 {% endif %}
 
