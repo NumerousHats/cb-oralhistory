@@ -71,7 +71,31 @@ custom-foot: annotated-media/js/transcript-js.html
 </div>
 
 {% if transcript-items and segment-items %}
-    <p>This will have tabbed navigation to switch between segments and transcript</p>        
+
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill" 
+                data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview" 
+                aria-selected="true">Overview</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-transcript-tab" data-bs-toggle="pill" 
+                data-bs-target="#pills-transcript" type="button" role="tab" aria-controls="pills-transcript" 
+                aria-selected="false">Transcript</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+            {% include annotated-media/item/segments.html %}
+
+        </div>
+        <div class="tab-pane fade" id="pills-transcript" role="tabpanel" aria-labelledby="pills-transcript-tab">
+            {% if site.data.filters %}
+                    {% include annotated-media/item/transcript-viz.html %}
+                {% endif %}
+                {% include annotated-media/item/transcript.html %}
+        </div>
+    </div>
 {% elsif transcript-items %}
     {% if site.data.filters %}
         {% include annotated-media/item/transcript-viz.html %}
