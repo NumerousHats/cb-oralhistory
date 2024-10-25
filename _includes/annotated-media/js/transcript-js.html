@@ -6,6 +6,7 @@
   const upperElement = document.getElementById('upper-content');
 
   function vizFilter(x) {
+    console.log("entering vizFilter")
     var rects = document.getElementsByTagName('rect');
     if (x != "hilite") {
       params.set('filter', x);
@@ -33,6 +34,7 @@
 
 
   function searchLines(x) {
+    console.log("entering searchLines")
     resetVals();
     var itemcontainer = document.getElementById("contents-container");
     var lines = itemcontainer.getElementsByClassName("line");
@@ -237,13 +239,19 @@
 
   //filters tab javascript + scroll-to-top retraction of filters
   document.addEventListener('DOMContentLoaded', function () {
-    {% unless site.data.theme.search-and-filters == false %}filterTab.addEventListener('click', function () {
+    {% unless site.data.theme.search-and-filters == false %}
+    filterTab.addEventListener('click', function () {
       filtersSearch.classList.toggle('retracted');
-    });{% endunless %}
+    });
+    {% endunless %}
     document.getElementById('scroll-to-top').addEventListener('click', function () {
       {% unless site.data.theme.search-and-filters == false %}if (filtersSearch.classList.contains("retracted")) { filtersSearch.classList.remove("retracted"); }{% endunless %}
       {% if site.data.theme.media-scroll == true %}
-      if (upperElement.classList.contains("media-scroll-wrapper")) { setTimeout(function () { upperElement.classList.remove("media-scroll-wrapper"); }, 300); console.log('scrollstopped?'); } {% endif %}
+      if (upperElement.classList.contains("media-scroll-wrapper")) { 
+        setTimeout(function () { upperElement.classList.remove("media-scroll-wrapper"); }, 300); 
+        console.log('scrollstopped?'); 
+      } 
+      {% endif %}
     });
   });
 
