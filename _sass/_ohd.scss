@@ -67,6 +67,15 @@
          display:block;
      }
  }
+
+ #filters-search.filters-hidden {
+    visibility: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    div.col {
+        display: none;
+    }
+  }
  
  .sticky-top{
     top: -1px;

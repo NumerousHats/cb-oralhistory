@@ -312,4 +312,24 @@
   window.addEventListener("scroll", throttleScrollCheck);
   window.addEventListener('load', checkStickyAndUpdate);
 
+  // Hide filters if in segment view
+  var overviewTab = document.querySelector('#pills-overview-tab');
+  if (document.querySelector('#segment-contents')) {
+    // Make sure we initially have the filters hidden, since we start in the overview tab
+    // but it also needs to be hidden if in segment-only mode
+    filtersSearch.classList.add('filters-hidden');
+  }
+  overviewTab.addEventListener('hidden.bs.tab', function (event) {
+    if (filtersSearch.classList.contains('filters-hidden')) {
+      filtersSearch.classList.remove('filters-hidden');
+    }
+  })
+  overviewTab.addEventListener('shown.bs.tab', function (event) {
+    if (filtersSearch.classList.contains('filters-hidden')) {
+      console.error('#filters-search should not have a .filters-hidden')
+    } else {
+      filtersSearch.classList.add('filters-hidden');
+    }
+  })
+
 </script>
