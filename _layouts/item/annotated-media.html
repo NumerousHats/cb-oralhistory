@@ -15,14 +15,14 @@ custom-foot: annotated-media/js/transcript-js.html
     {% assign transcript-items = site.data.transcripts[page.objectid] %}
 {% endif %}
 
-{%- comment -%} Determine if segment filename is the objectid of the item or if it is determined by the metadata's object-segment field, or if it even exists at all {%- endcomment -%}
-{% if page.object-segments contains ".csv"%}
-    {% assign temp = page.object-segments | remove: ".csv" %}
-    {% assign segment-items = site.data.segments[temp] %}
-{% elsif page.object-segments %}
-    {% assign segment-items = site.data.segments[page.object-segments] %}
+{%- comment -%} Determine if timepoint filename is the objectid of the item or if it is determined by the metadata's object-timepoint field, or if it even exists at all {%- endcomment -%}
+{% if page.object-timepoints contains ".csv"%}
+    {% assign temp = page.object-timepoints | remove: ".csv" %}
+    {% assign timepoint-items = site.data.timepoints[temp] %}
+{% elsif page.object-timepoints %}
+    {% assign timepoint-items = site.data.timepoints[page.object-timepoints] %}
 {% else %}
-    {% assign segment-items = site.data.segments[page.objectid] %}
+    {% assign timepoint-items = site.data.timepoints[page.objectid] %}
 {% endif %}
 
 {%- comment -%} if using color-coded visualization find all words used in the subject metadata {%- endcomment -%}
@@ -63,7 +63,7 @@ custom-foot: annotated-media/js/transcript-js.html
         {% include annotated-media/item/av.html %}
     {% endif %}
     
-    {% if transcript-items or segment-items %}
+    {% if transcript-items or timepoint-items %}
         <div id="media-metadata">
             {% include annotated-media/item/transcript-metadata.html %}
         </div>    
@@ -71,7 +71,7 @@ custom-foot: annotated-media/js/transcript-js.html
 </div>
 
 {% include annotated-media/item/filters.html %}
-{% if transcript-items and segment-items %}
+{% if transcript-items and timepoint-items %}
     {% if site.data.filters %}
         {% include annotated-media/item/transcript-viz.html %}
     {% endif %}
@@ -89,7 +89,7 @@ custom-foot: annotated-media/js/transcript-js.html
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
-            {% include annotated-media/item/segments.html %}
+            {% include annotated-media/item/timepoints.html %}
         </div>
         <div class="tab-pane fade" id="pills-transcript" role="tabpanel" aria-labelledby="pills-transcript-tab">
             {% include annotated-media/item/transcript.html %}
@@ -100,7 +100,7 @@ custom-foot: annotated-media/js/transcript-js.html
         {% include annotated-media/item/transcript-viz.html %}
     {% endif %}
     {% include annotated-media/item/transcript.html %}
-{% elsif segment-items %}
-    {% include annotated-media/item/segments.html %}
+{% elsif timepoint-items %}
+    {% include annotated-media/item/timepoints.html %}
 {% endif %}
 

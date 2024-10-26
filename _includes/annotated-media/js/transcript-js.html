@@ -312,11 +312,11 @@
   window.addEventListener("scroll", throttleScrollCheck);
   window.addEventListener('load', checkStickyAndUpdate);
 
-  // Hide filters if in segment view
+  // Hide filters if in timepoint view
   var overviewTab = document.querySelector('#pills-overview-tab');
-  if (document.querySelector('#segment-contents')) {
+  if (document.querySelector('#timepoint-contents')) {
     // Make sure we initially have the filters hidden, since we start in the overview tab
-    // but it also needs to be hidden if in segment-only mode
+    // but it also needs to be hidden if in timepoint-only mode
     filtersSearch.classList.add('filters-hidden');
   }
   overviewTab.addEventListener('hidden.bs.tab', function (event) {
