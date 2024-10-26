@@ -75,20 +75,20 @@ custom-foot: annotated-media/js/transcript-js.html
     {% if site.data.filters %}
         {% include annotated-media/item/transcript-viz.html %}
     {% endif %}
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <ul class="nav nav-pills mt-5 mb-5" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-overview-tab" data-bs-toggle="pill" 
-                data-bs-target="#pills-overview" type="button" role="tab" aria-controls="pills-overview" 
-                aria-selected="true">Overview</button>
+            <button class="nav-link active fs-2 px-3 py-2" id="pills-description-tab" data-bs-toggle="pill" 
+                data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description" 
+                aria-selected="true">View descriptions</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-transcript-tab" data-bs-toggle="pill" 
+            <button class="nav-link fs-2 px-3 py-2" id="pills-transcript-tab" data-bs-toggle="pill" 
                 data-bs-target="#pills-transcript" type="button" role="tab" aria-controls="pills-transcript" 
-                aria-selected="false">Transcript</button>
+                aria-selected="false">View transcript</button>
         </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+        <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
             {% include annotated-media/item/timepoints.html %}
         </div>
         <div class="tab-pane fade" id="pills-transcript" role="tabpanel" aria-labelledby="pills-transcript-tab">
