@@ -23,7 +23,7 @@ title: cb-oralhistory — the "annotated media" version
 tagline: Prototype for working with time-annotated media in CollectionBuilder
 # description appears in meta tags and other locations
 # this description might appear in search result lists, keep around 160 characters max
-description: "CB-Oralhistory is a mix of CollectionBuilder-CSV and Oral History as Data (OHD), with the option to inlude time-coded descriptive metadata."
+description: "CB-Oralhistory is a mix of CollectionBuilder-CSV and Oral History as Data (OHD), with the option to include time-coded descriptive metadata."
 # if you want a different description to appear in the footer only, define it here, or leave blank to use description
 footer_description: "cb-oralhistory rocks!" 
 # keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
