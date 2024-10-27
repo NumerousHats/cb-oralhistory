@@ -312,24 +312,34 @@
   window.addEventListener("scroll", throttleScrollCheck);
   window.addEventListener('load', checkStickyAndUpdate);
 
-  // Hide filters if in timepoint view
-  var overviewTab = document.querySelector('#pills-overview-tab');
+  // Hide filters and topic viz if in timepoint view
+  var overviewTab = document.querySelector('#pills-description-tab');
+  var vizDiv = document.querySelector('#viz');
+  var metaDiv = document.querySelector('#viz-legend');
   if (document.querySelector('#timepoint-contents')) {
     // Make sure we initially have the filters hidden, since we start in the overview tab
     // but it also needs to be hidden if in timepoint-only mode
     filtersSearch.classList.add('filters-hidden');
+    if (vizDiv) { vizDiv.classList.add('d-none'); }
+    if (metaDiv) { metaDiv.classList.add('d-none'); }
   }
-  overviewTab.addEventListener('hidden.bs.tab', function (event) {
-    if (filtersSearch.classList.contains('filters-hidden')) {
-      filtersSearch.classList.remove('filters-hidden');
-    }
-  })
-  overviewTab.addEventListener('shown.bs.tab', function (event) {
-    if (filtersSearch.classList.contains('filters-hidden')) {
-      console.error('#filters-search should not have a .filters-hidden')
-    } else {
-      filtersSearch.classList.add('filters-hidden');
-    }
-  })
+  if (overviewTab) {
+    overviewTab.addEventListener('hidden.bs.tab', function (event) {
+      if (filtersSearch.classList.contains('filters-hidden')) {
+        filtersSearch.classList.remove('filters-hidden');
+        if (vizDiv) { vizDiv.classList.remove('d-none'); }
+        if (metaDiv) { metaDiv.classList.remove('d-none'); }
+      }
+    })
+    overviewTab.addEventListener('shown.bs.tab', function (event) {
+      if (filtersSearch.classList.contains('filters-hidden')) {
+        console.error('#filters-search should not have a .filters-hidden');
+      } else {
+        filtersSearch.classList.add('filters-hidden');
+        if (vizDiv) { vizDiv.classList.add('d-none'); }
+        if (metaDiv) { metaDiv.classList.add('d-none'); }
+      }
+    })
+  }
 
 </script>
