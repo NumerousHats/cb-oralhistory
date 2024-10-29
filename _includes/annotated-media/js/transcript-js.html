@@ -36,7 +36,7 @@
   function searchLines(x) {
     console.log("entering searchLines")
     resetVals();
-    var itemcontainer = document.getElementById("contents-container");
+    var itemcontainer = document.getElementById("transcript-contents-container");
     var lines = itemcontainer.getElementsByClassName("line");
     // the line below seems superflous but without it, things break
     var input, filter, p, span, i;
@@ -82,7 +82,7 @@
 
   {% if site.data.filters %} function filterLines(x) {
     resetVals();
-    var itemcontainer = document.getElementById("contents-container");
+    var itemcontainer = document.getElementById("transcript-contents-container");
     var lines = itemcontainer.getElementsByClassName("line");
     var filterClass = x;
     vizFilter(filterClass);
