@@ -5,6 +5,7 @@
 module Jekyll
   module ArrayCountUniq
     def array_count_uniq(input)
+      return {} if input.nil? || input.empty?
       clean = input.compact.collect(&:strip).reject(&:empty?)
       clean.uniq.map { |x| [x, clean.count(x)] }.sort_by {|k, v| -v}.to_h
     end
