@@ -9,7 +9,13 @@
     <dl>
         {% for f in fields %}{% if page[f.field] %}
         <dt class="field">{{ f.display_name }}:</dt>
-        <dd class="field-value">
+        {% if f.field == "title" %}
+            <dd class="field-value" data-pagefind-meta="title" data-pagefind-filter="Title">
+        {% elsif f.filter == "true" %}
+            <dd class="field-value" data-pagefind-filter="{{f.display_name}}">
+        {% else %}
+            <dd class="field-value">
+        {% endif %}
             {% if f.browse_link == "true" %}
             {% assign topics = page[f.field] | split: ";" %}
             {% for t in topics %}

@@ -1,0 +1,19 @@
+---
+# Pagefind search page
+layout: page 
+custom-foot:
+---
+
+{{content}}
+
+<link href="/items/pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/items/pagefind/pagefind-ui.js"></script>
+<div id="pagefind-search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#pagefind-search", 
+                            showSubResults: true, 
+                            showImages: false
+                        });
+    });
+</script>
