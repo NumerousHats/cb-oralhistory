@@ -2,7 +2,7 @@
 
 # About this branch
 
-This branch is a minimal demo of how one might be able to use [Pagefind](https://pagefind.app/) to perform searching and filtering. It currently indexes only the contents of #item-metadata. Filtering is enabled for fields where the `filter` column in `config-metadata.csv` is `true`. To build, run `python -m pagefind --site _site/items/` or `npx -y pagefind --site _site_items/` *after* performing a CB/Jekyll build (see the Pagefind documentation for details).
+This branch is a minimal demo of how one might be able to use [Pagefind](https://pagefind.app/) to perform searching and filtering. It currently indexes only the contents of #item-metadata. Filtering is enabled for fields where the `filter` column in `config-metadata.csv` is `true`. To build, run `python -m pagefind --site _site/items/` or `npx -y pagefind --site _site/items/` *after* performing a CB/Jekyll build (see the Pagefind documentation for details).
 
 The Pagefind search page is at `/pagefind-search`.
 
