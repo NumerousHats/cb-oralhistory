@@ -25,7 +25,7 @@ tagline: Prototype for working with Oral History as Data items in CollectionBuil
 # this description might appear in search result lists, keep around 160 characters max
 description: "CB-OHD is a mix of CollectionBuilder-CSV and Oral History as Data (OHD)."
 # if you want a different description to appear in the footer only, define it here, or leave blank to use description
-footer_description: "cb-oralhistory rocks!" 
+# footer_description: "cb-oralhistory rocks!" 
 # keywords, a short list of subjects describing the collection, separated by semicolon, to appear in rich markup
 keywords: oral histories;digital collections
 # creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
@@ -80,7 +80,7 @@ organization-logo-nav: https://cdil.lib.uidaho.edu/assets/img/logo.png
 # (this is done automatically by gh-pages build)
 #
 # ignore stuff
-exclude: [docs/, Rakefile, README.md, LICENSE, CITATION.cff, CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md]
+exclude: [docs/, Rakefile, rakelib/, README.md, LICENSE, CITATION.cff, CODE_OF_CONDUCT.md, CONTRIBUTING.md, SECURITY.md]
 # compress CSS output
 sass:
   style: compressed
